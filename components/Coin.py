@@ -1,6 +1,5 @@
 import pygame
 from random import randint
-pygame.init()
 
 class Coin():
 	def __init__(self, img, coinValue):
@@ -9,9 +8,9 @@ class Coin():
 		self.x = randint(0,700)
 		self.y = randint(0,500)
 		self.widthHeight = (64,64)
-		self.rect = pygame.Rect(self.x,self.y,64,64)	
+		self.rect = pygame.Rect(self.x,self.y,self.widthHeight[0],self.widthHeight[1])	
 		
-	def createCoinObject(self, gameDisplay):
+	def createObject(self, gameDisplay):
 		gameDisplay.blit(self.img,(self.x,self.y))
 	
 	def changePos(self):

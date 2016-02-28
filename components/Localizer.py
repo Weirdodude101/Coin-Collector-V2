@@ -1,5 +1,9 @@
 import pygame
-pygame.init()
+
+window_title = "Coin Collector V2"
+player_img = "images/player.png"
+yellowCoin_img = "images/coinyellow.png"
+enemy_img = "images/enemy.png"
 
 dispWidth = 800
 dispHeight = 600

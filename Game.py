@@ -5,14 +5,17 @@ from components.Window import Window
 from components.Player import Player
 from components.Message import Message
 from components.Coin import Coin
+from components.Enemy import Enemy
 from components import Localizer
 pygame.init()
 
 class Game():
 	def __init__(self):
-		self.Player = Player("images/player.png", 20)
-		self.yellowCoin = Coin("images/coinyellow.png", 1)
-		self.window = Window("Coin Collector V2",
+		self.Player = Player(Localizer.player_img, 20)
+		self.yellowCoin = Coin(Localizer.yellowCoin_img, 1)
+		self.Enemy = Enemy(Localizer.enemy_img)
+		self.window = Window(
+			Localizer.window_title,
 			self.Player.img,
 			Localizer.dispWidth,
 			Localizer.dispHeight,
@@ -44,13 +47,19 @@ class Game():
 				self.Player.y += self.Player.velY
 
 			self.window.gameDisplay.fill(Localizer.blue)
-			#Message("Player: " + Player.name,20,30,16)
 			coinCollision = self.detectCollisions(self.yellowCoin.x,self.yellowCoin.y,self.yellowCoin.widthHeight[0],self.yellowCoin.widthHeight[1],self.Player.x,self.Player.y,self.Player.widthHeight[0],self.Player.widthHeight[1])
-			collision = self.Player.checkCollision(coinCollision, False)
-			if collision:
+			enemyCollision = self.detectCollisions(self.Enemy.x,self.Enemy.y,self.Enemy.widthHeight[0],self.Enemy.widthHeight[1],self.Player.x,self.Player.y,self.Player.widthHeight[0],self.Player.widthHeight[1])
+			if enemyCollision:
+				enemyCollide = self.Player.checkCollision(0, coinCollision, enemyCollision)
+			else:
+				coinCollide = self.Player.checkCollision(self.yellowCoin.coinValue,coinCollision, enemyCollision)
+			if coinCollide:
 				self.yellowCoin.changePos()
-			self.yellowCoin.createCoinObject(self.window.gameDisplay)
-			self.Player.createPlayerObject(self.window.gameDisplay)
+			self.yellowCoin.createObject(self.window.gameDisplay)
+			self.Enemy.createObject(self.window.gameDisplay)
+			self.Player.createObject(self.window.gameDisplay)
+			self.Enemy.update(self.Player.x, self.Player.y)
+			#Message("Player: " + Player.name,20,30,16)
 			Message("Coins: " + str(self.Player.numCoins),20,30,16,self.window.gameDisplay)
 			Message("Lives: " + str(self.Player.lives),20,50,16,self.window.gameDisplay)
 			pygame.display.flip()

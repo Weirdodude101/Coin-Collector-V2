@@ -1,7 +1,6 @@
 import pygame
 from random import randint
 import Localizer
-pygame.init
 
 class Player():
 	def __init__(self, img, maxCoins):
@@ -15,12 +14,12 @@ class Player():
 		self.rect = pygame.Rect(self.x,self.y,self.widthHeight[0],self.widthHeight[1])
 		self.velX = 0
 		self.velY = 0
-		self.maxVelX = 1
-		self.minVelX = -1
-		self.maxVelY = 1
-		self.minVelY = -1
+		self.maxVelX = 1.1
+		self.minVelX = -1.1
+		self.maxVelY = 1.1
+		self.minVelY = -1.1
 
-	def createPlayerObject(self,gameDisplay):
+	def createObject(self,gameDisplay):
 		gameDisplay.blit(self.img, (self.x,self.y))
 
 	def update(self, event):
@@ -39,12 +38,12 @@ class Player():
 				self.velY = 0
 
 
-	def checkCollision(self, collision, enemyCollision):
+	def checkCollision(self, value, collision, enemyCollision):
 		if collision and not enemyCollision:
-			self.numCoins += 1
+			self.numCoins += value
+			return True
+		elif enemyCollision and not collision:
+			self.lives -= 1
 			return True
 		else:
 			return False
-
-		if enemyCollision and not collision:
-			self.lives -= 1
