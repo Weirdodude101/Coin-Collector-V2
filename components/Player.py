@@ -15,10 +15,10 @@ class Player():
 		self.rect = pygame.Rect(self.x,self.y,self.widthHeight[0],self.widthHeight[1])
 		self.velX = 0
 		self.velY = 0
-		self.maxVelX = 0.6
-		self.minVelX = -0.6
-		self.maxVelY = 0.6
-		self.minVelY = -0.6
+		self.maxVelX = 1
+		self.minVelX = -1
+		self.maxVelY = 1
+		self.minVelY = -1
 
 	def createPlayerObject(self,gameDisplay):
 		gameDisplay.blit(self.img, (self.x,self.y))
@@ -37,3 +37,14 @@ class Player():
 			if event.key == pygame.K_LEFT or pygame.K_RIGHT:
 				self.velX = 0
 				self.velY = 0
+
+
+	def checkCollision(self, collision, enemyCollision):
+		if collision and not enemyCollision:
+			self.numCoins += 1
+			return True
+		else:
+			return False
+
+		if enemyCollision and not collision:
+			self.lives -= 1
