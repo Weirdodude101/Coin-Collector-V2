@@ -13,10 +13,10 @@ class Player():
 		self.rect = pygame.Rect(self.x,self.y,self.widthHeight[0],self.widthHeight[1])
 		self.velX = 0
 		self.velY = 0
-		self.maxVelX = 1.1
-		self.minVelX = -1.1
-		self.maxVelY = 1.1
-		self.minVelY = -1.1
+		self.maxVelX = 100
+		self.minVelX = -100
+		self.maxVelY = 100
+		self.minVelY = -100
 
 	def createObject(self,gameDisplay):
 		gameDisplay.blit(self.img, (self.x,self.y))
