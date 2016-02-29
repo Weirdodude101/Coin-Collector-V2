@@ -1,0 +1,1 @@
+from coincollector.base import CoinCollectorStart

@@ -1,7 +1,6 @@
 import pygame
 from random import randint
-import Localizer
-
+from coincollector.base import Localizer
 class Player():
 	def __init__(self, img, maxCoins):
 		self.img = pygame.image.load(img)
@@ -35,6 +34,7 @@ class Player():
 		if event.type == pygame.KEYUP:
 			if event.key == pygame.K_LEFT or pygame.K_RIGHT:
 				self.velX = 0
+			if event.key == pygame.K_UP or pygame.K_DOWN:
 				self.velY = 0
 
 

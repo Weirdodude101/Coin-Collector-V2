@@ -5,6 +5,11 @@ player_img = "images/player.png"
 yellowCoin_img = "images/coinyellow.png"
 enemy_img = "images/enemy.png"
 
+player_maxCoins = 20
+coinValues = {
+	0: 1
+}
+
 dispWidth = 800
 dispHeight = 600
 black = (0,0,0)

@@ -1,18 +1,19 @@
 import pygame
 import pygame._view
 from pygame.locals import *
-from components.Window import Window
-from components.Player import Player
-from components.Message import Message
-from components.Coin import Coin
-from components.Enemy import Enemy
-from components import Localizer
+from Window import Window
+from Message import Message
+import Localizer
+from coincollector.objects.Player import Player
+from coincollector.objects.Coin import Coin
+from coincollector.objects.Enemy import Enemy
+from coincollector.shop.Shop import Shop
 pygame.init()
 
-class Game():
+class CoinCollector():
 	def __init__(self):
-		self.Player = Player(Localizer.player_img, 20)
-		self.yellowCoin = Coin(Localizer.yellowCoin_img, 1)
+		self.Player = Player(Localizer.player_img, Localizer.player_maxCoins)
+		self.yellowCoin = Coin(Localizer.yellowCoin_img, Localizer.coinValues[0])
 		self.Enemy = Enemy(Localizer.enemy_img)
 		self.window = Window(
 			Localizer.window_title,
@@ -22,6 +23,7 @@ class Game():
 			Localizer.red)
 
 	def load(self):
+		print 'Successfully loaded game'
 		self.window.clock.tick(30)
 		self.gameLoaded = True
 		while self.gameLoaded:
@@ -31,6 +33,10 @@ class Game():
 					self.gameLoaded = False
 
 				self.Player.update(event)
+
+				if event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_s:
+						shop = Shop(self.window, self.Player.numCoins).load()
 
 			if self.Player.x > Localizer.dispWidth - 64:
 				self.Player.x += -5
@@ -81,5 +87,5 @@ class Game():
 		else:
 			return False
 
-game = Game()
-game.load()
+print 'Loading Game...'
+game = CoinCollector().load()

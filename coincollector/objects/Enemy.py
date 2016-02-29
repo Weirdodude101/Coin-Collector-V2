@@ -1,6 +1,7 @@
 import pygame
-import Localizer
 from random import randint
+from coincollector.base import Localizer
+
 class Enemy():
 	def __init__(self, img):
 		self.img = pygame.image.load(img)
@@ -10,7 +11,7 @@ class Enemy():
 		self.velY = 0
 		self.maxVel = 0
 		self.minVel = 0
-		self.velInc = 0.02
+		self.velInc = 0.01
 		self.widthHeight = (64,64)
 		self.timer = 0
 		self.rect = pygame.Rect(self.x,self.y,self.widthHeight[0],self.widthHeight[1])
