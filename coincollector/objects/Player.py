@@ -1,6 +1,7 @@
 import pygame
 from random import randint
 from coincollector.base import Localizer
+import sys
 class Player():
 	def __init__(self, img, maxCoins):
 		self.img = pygame.image.load(img)
@@ -13,10 +14,14 @@ class Player():
 		self.rect = pygame.Rect(self.x,self.y,self.widthHeight[0],self.widthHeight[1])
 		self.velX = 0
 		self.velY = 0
-		self.maxVelX = 100
-		self.minVelX = -100
-		self.maxVelY = 100
-		self.minVelY = -100
+		if sys.platform == "win32":
+			self.maxVelX = 1.1
+			self.maxVelY = 1.1
+		else:
+			self.maxVelX = 5
+			self.maxVelY = 5
+		self.minVelX = self.maxVelX * -1
+		self.minVelY = self.maxVelY * -1
 
 	def createObject(self,gameDisplay):
 		gameDisplay.blit(self.img, (self.x,self.y))
