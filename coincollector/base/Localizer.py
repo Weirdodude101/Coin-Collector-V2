@@ -12,22 +12,20 @@ coinValues = {
 
 upgradeDict = {
 	0: {
-		"Name": "Test - ",
+		"Name": "+10 Max Coins",
 		"Price": 1,
-		"yPos": 90
-	},
-	1: {
-		"Name": "Test2 - ",
-		"Price": 2,
-		"yPos": 130
-	},
-	2: {
-		"Name": "Test3 - ",
-		"Price": 3,
-		"yPos": 170
+		"Action": "incMaxCoins",
+		"Amount": 10,
+		"Multiplier": 2
 	}
 }
 
+
+yPos = 50
+number = 40
+for x in upgradeDict:
+	yPos += number
+	upgradeDict[x]["yPos"] = yPos
 
 
 dispWidth = 800

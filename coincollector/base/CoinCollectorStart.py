@@ -23,6 +23,7 @@ class CoinCollector():
 			Localizer.red)
 
 	def load(self):
+		global coinCollide
 		print 'Successfully loaded game'
 		self.window.clock.tick(30)
 		self.gameLoaded = True
@@ -36,7 +37,7 @@ class CoinCollector():
 
 				if event.type == pygame.KEYDOWN:
 					if event.key == pygame.K_s:
-						shop = Shop(self.window, self.Player.numCoins).load()
+						shop = Shop(self.window, self.Player).load()
 
 			if self.Player.x > Localizer.dispWidth - 64:
 				self.Player.x += -5
@@ -69,11 +70,6 @@ class CoinCollector():
 			Message("Coins: " + str(self.Player.numCoins),20,30,16,self.window.gameDisplay)
 			Message("Lives: " + str(self.Player.lives),20,50,16,self.window.gameDisplay)
 			pygame.display.flip()
-
-	def unload(self):
-		del self.window
-		del self.Player
-		self.gameLoaded = False
 
 	def detectCollisions(self, x1, y1, w1, h1, x2, y2, w2, h2):
 		if (x2+w2>=x1>=x2 and y2+h2>=y1>=y2):

@@ -1,7 +1,7 @@
 import pygame
 
 class Button():
-	def __init__(self,msg,x,y,w,h,ic,ac,action,price):
+	def __init__(self,msg,x,y,w,h,ic,ac,action,price,amount,multiplier):
 		self.msg = msg
 		self.x = x
 		self.y = y
@@ -12,6 +12,8 @@ class Button():
 		self.action = action
 		self.hovering = False
 		self.price = price
+		self.amount = amount
+		self.multiplier = multiplier
 	
 	def text_objects(self,text,font):
 		textSurface = font.render(text,True,(0,0,0))
