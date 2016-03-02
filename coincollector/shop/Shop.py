@@ -29,6 +29,7 @@ class Shop():
 			Message("Welcome to the shop!", Localizer.dispWidth - 550,30,24,self.window.gameDisplay)
 			Message("You currently have {0} coins.".format(self.Player.numCoins), Localizer.dispWidth - 535,60,16,self.window.gameDisplay)
 			self.buttonDict = {}
+			self.actionDict = {}
 			for upgrade in self.upgradeDict:
 				name = self.upgradeDict[upgrade]["Name"] + " - "
 				price = self.upgradeDict[upgrade]["Price"]
@@ -42,6 +43,7 @@ class Shop():
 					namePrice = name + str(price) + " Coin"
 				self.button = Button(namePrice, Localizer.dispWidth - 570, yPos, 300, 37.5, Localizer.green, Localizer.bright_green, action, price, amount, multiplier)
 				self.buttonDict[upgrade] = {"Button": self.button}
+				self.actionDict[upgrade] = action
 				self.button.update(self.window.gameDisplay)
 			Message("Press 's' to go back to game", Localizer.dispWidth - 535,570,16,self.window.gameDisplay)
 			self.buttonCheck()
@@ -57,13 +59,19 @@ class Shop():
 			amount = self.buttonDict[button]["Button"].amount
 			if click[0] == 1:
 				if hovering == True:
-					if action == "incMaxCoins":
+					if action == self.actionDict[0]:
 						print 'Incoming purchase...'
 						isValid = self.checkPrice(price)
 						if isValid:
 							Upgrades(self.Player, self.upgradeDict, price, multiplier, button).incMaxCoins(amount)
 						else:
 							print 'Invalid Purchase'
+					elif action == self.actionDict[1]:
+						isValid = self.checkPrice(price)
+						if isValid:
+							print 'ay'
+						else:
+							print 'nope'
 
 	def checkPrice(self, price):
 		if price > self.Player.numCoins:
