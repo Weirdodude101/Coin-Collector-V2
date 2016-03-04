@@ -40,5 +40,9 @@ class Enemy():
 		self.x = x
 		self.y = y
 
+	def changePos(self):
+		self.x = randint(0,700)
+		self.y = randint(0,500)
+	
 	def createObject(self, gameDisplay):
 		gameDisplay.blit(self.img, (self.x, self.y))

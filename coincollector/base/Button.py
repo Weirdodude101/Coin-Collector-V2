@@ -1,7 +1,7 @@
 import pygame
 
 class Button():
-	def __init__(self,msg,x,y,w,h,ic,ac,action,price,amount,multiplier):
+	def __init__(self,msg,x,y,w,h,ic,ac,action = None,price = None,amount = None,multiplier = None):
 		self.msg = msg
 		self.x = x
 		self.y = y

@@ -5,18 +5,19 @@ player_img = "images/player.png"
 yellowCoin_img = "images/coinyellow.png"
 enemy_img = "images/enemy.png"
 
-player_maxCoins = 20
+player_maxCoins = 10
+
 coinValues = {
 	0: 1
 }
 
 upgradeDict = {
 	0: {
-		"Name": "+10 Max Coins",
+		"Name": " Max Coins",
 		"Price": 1,
 		"Action": "incMaxCoins",
-		"Amount": 10,
-		"Multiplier": 2
+		"Amount": 2,
+		"Multiplier": 1.50
 	}
 }
 
