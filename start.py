@@ -1,1 +1,1 @@
-from coincollector.base import CoinCollectorStart
+from coincollector.base import CoinCollectorGame 

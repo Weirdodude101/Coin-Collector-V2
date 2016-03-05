@@ -5,8 +5,8 @@ from coincollector.base import Localizer
 class Enemy():
 	def __init__(self, img):
 		self.img = pygame.image.load(img)
-		self.x = randint(0,700)
-		self.y = randint(0,500)
+		self.x = randint(0,Localizer.dispWidth - 100)
+		self.y = randint(0,Localizer.dispHeight - 100)
 		self.velX = 0
 		self.velY = 0
 		self.maxVel = 0
@@ -36,13 +36,9 @@ class Enemy():
 			if self.minVel <= 3:
 				self.minVel -= 0
 
-	def changePos(self,x,y):
-		self.x = x
-		self.y = y
-
 	def changePos(self):
-		self.x = randint(0,700)
-		self.y = randint(0,500)
+		self.x = randint(0,Localizer.dispWidth - 100)
+		self.y = randint(0,Localizer.dispHeight - 100)
 	
 	def createObject(self, gameDisplay):
 		gameDisplay.blit(self.img, (self.x, self.y))

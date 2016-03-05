@@ -8,8 +8,8 @@ class Player():
 		self.maxCoins = maxCoins
 		self.numCoins = 0
 		self.lives = 3
-		self.x = randint(0,700)
-		self.y = randint(0,500)
+		self.x = randint(0,Localizer.dispWidth - 100)
+		self.y = randint(0,Localizer.dispHeight - 100)
 		self.widthHeight = (64, 64)
 		self.rect = pygame.Rect(self.x,self.y,self.widthHeight[0],self.widthHeight[1])
 		self.velX = 0
@@ -18,8 +18,8 @@ class Player():
 			self.maxVelX = 1.1
 			self.maxVelY = 1.1
 		else:
-			self.maxVelX = 5
-			self.maxVelY = 5
+			self.maxVelX = 3
+			self.maxVelY = 3
 		self.minVelX = self.maxVelX * -1
 		self.minVelY = self.maxVelY * -1
 

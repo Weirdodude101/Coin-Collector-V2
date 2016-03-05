@@ -1,5 +1,5 @@
 import pygame
-
+import sys
 window_title = "Coin Collector V2"
 player_img = "images/player.png"
 yellowCoin_img = "images/coinyellow.png"
@@ -13,11 +13,18 @@ coinValues = {
 
 upgradeDict = {
 	0: {
-		"Name": " Max Coins",
+		"Name": "Max Coins",
 		"Price": 1,
 		"Action": "incMaxCoins",
-		"Amount": 2,
-		"Multiplier": 1.50
+		"Amount": 1,
+		"Multiplier": 1.5
+	},
+	1: {
+		"Name": "Player Speed",
+		"Price": 5,
+		"Action": "incPlayerSpeed",
+		"Amount": 0.2,
+		"Multiplier": 1.75
 	}
 }
 

@@ -74,7 +74,7 @@ class CoinCollector():
 			self.Player.createObject(self.window.gameDisplay)
 			self.Enemy.update(self.Player.x, self.Player.y)
 			if self.Player.lives <= 0:
-				gameOver = Button("Game Over!", Localizer.dispWidth - 570, 150, 300, 60, Localizer.green, Localizer.bright_green, "exit")
+				gameOver = Button("Game Over!", Localizer.dispWidth - 570, 250, 300, 60, Localizer.green, Localizer.bright_green, "exit")
 				self.Enemy.velInc = 0
 				self.Enemy.maxVel = 0
 				self.Enemy.minVel = 0

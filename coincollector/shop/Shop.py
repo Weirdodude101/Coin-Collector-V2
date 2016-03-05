@@ -11,6 +11,8 @@ class Shop():
 		self.window = window
 		self.Player = player
 		self.upgradeDict = Localizer.upgradeDict
+		self.buttonDict = {}
+		self.actionDict = {}
 
 	def load(self):
 		self.window.clock.tick(30)
@@ -31,8 +33,6 @@ class Shop():
 			Message("Max Coins: " + str(self.Player.maxCoins),20,30,16,self.window.gameDisplay)
 			Message("Welcome to the shop!", Localizer.dispWidth - 550,30,24,self.window.gameDisplay)
 			Message("You currently have {0} coins.".format(self.Player.numCoins), Localizer.dispWidth - 535,60,16,self.window.gameDisplay)
-			self.buttonDict = {}
-			self.actionDict = {}
 			for upgrade in self.upgradeDict:
 				name = self.upgradeDict[upgrade]["Name"] + " - "
 				price = self.upgradeDict[upgrade]["Price"]
@@ -41,9 +41,9 @@ class Shop():
 				amount = self.upgradeDict[upgrade]["Amount"]
 				multiplier = self.upgradeDict[upgrade]["Multiplier"]
 				if not price == 1:
-					namePrice = "+" + str(amount) + name + str(price) + " Coins"
+					namePrice = "+" + str(amount) + " " + name + str(price) + " Coins"
 				else:
-					namePrice = "+" + str(amount) + name + str(price) + " Coin"
+					namePrice = "+" + str(amount) + " " + name + str(price) + " Coin"
 				self.button = Button(namePrice, Localizer.dispWidth - 570, yPos, 300, 35, Localizer.green, Localizer.bright_green, action, price, amount, multiplier)
 				self.buttonDict[upgrade] = {"Button": self.button}
 				self.actionDict[upgrade] = action
@@ -64,12 +64,19 @@ class Shop():
 			multiplier = self.buttonDict[button]["Button"].multiplier
 			amount = self.buttonDict[button]["Button"].amount
 		if click[0] == 1:
+			print 'Incoming purchase...'
+			print action
 			if hovering == True:
-				if action == self.actionDict[0]:
-					print 'Incoming purchase...'
+				if "incMaxCoins" == self.actionDict[0]:
 					isValid = self.checkPrice(price)
 					if isValid:
-						Upgrades(self.Player, self.upgradeDict, price, multiplier, button).incMaxCoins(amount)
+						upgrade = Upgrades(self.Player, self.upgradeDict, price, multiplier, button).incMaxCoins(amount)
+					else:
+						print 'Invalid Purchase'
+				if "incPlayerSpeed" == self.actionDict[1]:
+					isValid = self.checkPrice(price)
+					if isValid:
+						upgrade = Upgrades(self.Player, self.upgradeDict, price, multiplier, button).incPlayerSpeed(amount)
 					else:
 						print 'Invalid Purchase'
 
